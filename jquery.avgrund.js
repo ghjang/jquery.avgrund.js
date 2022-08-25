@@ -33,6 +33,7 @@
             openOnEvent: true,
             setEvent: 'click',
             onLoad: false,
+            onAfterLoad: false,
             onUnload: false,
             onClosing: false,
             template: '<p>This is test popin content!</p>'
@@ -103,6 +104,12 @@
 
                 if (options.enableStackAnimation) {
                     $('.avgrund-popin').addClass('stack');
+                }
+
+                if (typeof options.onAfterLoad === 'function') {
+                    setTimeout(function () {
+                        options.onAfterLoad(self);
+                    }, 100);
                 }
 
                 body.bind('keyup', onDocumentKeyup)
